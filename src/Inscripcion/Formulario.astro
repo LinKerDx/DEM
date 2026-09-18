@@ -1,0 +1,243 @@
+---
+interface Props {
+	endpoint: string;
+}
+
+const { endpoint } = Astro.props;
+---
+
+<section class="involucracion">
+	<div class="core">
+		<p class="marcador">Inscripción</p>
+		<h2>Formulario de inscripción</h2>
+		<p class="involucracion__intro">
+			Completa tus datos y nos pondremos en contacto para confirmar tu lugar.
+			Las fechas de los próximos encuentros se comunican por correo.
+		</p>
+
+		<form
+			class="formulario"
+			data-endpoint={endpoint}
+			method="POST"
+			novalidate
+		>
+			<input type="text" name="_honey" class="formulario__trampa" tabindex="-1" autocomplete="off" />
+
+			<div class="formulario__campo">
+				<label for="nombre">Nombre completo</label>
+				<input id="nombre" name="nombre" type="text" required autocomplete="name" placeholder="Ej. María López" />
+			</div>
+
+			<div class="formulario__fila">
+				<div class="formulario__campo">
+					<label for="correo">Correo electrónico</label>
+					<input id="correo" name="correo" type="email" required autocomplete="email" placeholder="tucorreo@ejemplo.com" />
+				</div>
+				<div class="formulario__campo">
+					<label for="telefono">Teléfono</label>
+					<input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Ej. 55 1234 5678" />
+				</div>
+			</div>
+
+			<div class="formulario__campo">
+				<label for="conyuge">Nombre de tu cónyuge</label>
+				<input id="conyuge" name="conyuge" type="text" autocomplete="off" placeholder="Ej. Juan Pérez" />
+			</div>
+
+			<div class="formulario__fila">
+				<div class="formulario__campo">
+					<label for="ciudad">Ciudad</label>
+					<input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" placeholder="Ej. Ciudad de México" />
+				</div>
+				<div class="formulario__campo">
+					<label for="parroquia">Parroquia / comunidad</label>
+					<input id="parroquia" name="parroquia" type="text" autocomplete="off" placeholder="Opcional" />
+				</div>
+			</div>
+
+			<div class="formulario__campo">
+				<label for="aniosmatrimonio">Años de matrimonio</label>
+				<input id="aniosmatrimonio" name="aniosmatrimonio" type="number" min="0" max="100" placeholder="Opcional" />
+			</div>
+
+			<div class="formulario__campo">
+				<label for="mensaje">Cuéntanos algo de ustedes</label>
+				<textarea
+					id="mensaje"
+					name="mensaje"
+					rows="4"
+					placeholder="Motivación, expectativas, horarios que mejor les convengan..."
+				></textarea>
+			</div>
+
+			<button class="boton boton-primario formulario__enviar" type="submit">
+				Enviar inscripción
+			</button>
+
+			<p class="formulario__estado" data-estado aria-live="polite"></p>
+		</form>
+	</div>
+</section>
+
+<style>
+	.involucracion {
+		padding-block: 3.5rem;
+	}
+
+	.involucracion__intro {
+		color: var(--gris);
+		max-width: 620px;
+	}
+
+	.formulario {
+		background: var(--blanco);
+		border-radius: var(--radio);
+		box-shadow: var(--sombra);
+		padding: 2rem;
+		margin-top: 2rem;
+		display: grid;
+		gap: 1.2rem;
+		max-width: 720px;
+	}
+
+	.formulario__campo {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+
+	.formulario__campo label {
+		font-weight: 600;
+		font-size: 0.92rem;
+		color: var(--rojo-oscuro);
+	}
+
+	.formulario__campo input,
+	.formulario__campo textarea {
+		font: inherit;
+		padding: 0.7rem 0.9rem;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		background: var(--hueso);
+		color: var(--tinta);
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+	}
+
+	.formulario__campo input:focus,
+	.formulario__campo textarea:focus {
+		outline: none;
+		border-color: var(--rojo);
+		box-shadow: 0 0 0 3px rgb(210 32 51 / 0.18);
+	}
+
+	.formulario__fila {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.2rem;
+	}
+
+	.formulario__enviar {
+		justify-self: start;
+	}
+
+	.formulario__estado {
+		margin: 0;
+		font-weight: 600;
+		min-height: 1.6em;
+	}
+
+	.formulario__estado[data-tipo='ok'] {
+		color: #2e7d46;
+	}
+
+	.formulario__estado[data-tipo='error'] {
+		color: var(--rojo-oscuro);
+	}
+
+	.formulario__trampa {
+		position: absolute;
+		left: -9999px;
+		opacity: 0;
+		height: 0;
+		width: 0;
+	}
+
+	@media (max-width: 640px) {
+		.involucracion {
+			padding-block: 2.5rem;
+		}
+
+		.formulario {
+			padding: 1.4rem;
+			margin-top: 1.5rem;
+		}
+
+		.formulario__fila {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.formulario__campo input,
+		.formulario__campo textarea {
+			font-size: 16px;
+		}
+
+		.formulario__enviar {
+			justify-self: stretch;
+			text-align: center;
+		}
+	}
+</style>
+
+<script>
+	const formulario = document.querySelector('form[data-endpoint]');
+	const estado = formulario?.querySelector('[data-estado]');
+
+	function mostrar(mensaje, tipo) {
+		if (!estado) return;
+		estado.textContent = mensaje;
+		estado.dataset.tipo = tipo;
+	}
+
+	formulario?.addEventListener('submit', async (event) => {
+		event.preventDefault();
+
+		const trampa = formulario.querySelector('input[name="_honey"]');
+		if (trampa && trampa.value !== '') return;
+
+		const boton = formulario.querySelector('[type="submit"]');
+
+		if (!formulario.checkValidity()) {
+			formulario.reportValidity();
+			return;
+		}
+
+		const datos = new FormData(formulario);
+		datos.append('_subject', 'Nueva inscripción · DEM');
+		datos.append('_template', 'table');
+
+		boton.disabled = true;
+		boton.textContent = 'Enviando...';
+		mostrar('', '');
+
+		try {
+			const respuesta = await fetch(formulario.dataset.endpoint, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(Object.fromEntries(datos)),
+			});
+
+			if (!respuesta.ok) {
+				throw new Error('Error en el envío');
+			}
+
+			formulario.reset();
+			mostrar('¡Gracias! Tu inscripción fue enviada. Te contactaremos pronto.', 'ok');
+		} catch {
+			mostrar('No pudimos enviar tu inscripción. Inténtalo de nuevo o escríbenos por correo.', 'error');
+		} finally {
+			boton.disabled = false;
+			boton.textContent = 'Enviar inscripción';
+		}
+	});
+</script>

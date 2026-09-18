@@ -1,0 +1,99 @@
+---
+import { sitio } from '../config/sitio';
+---
+
+<header class="cabecera">
+	<nav class="core cabecera__nav">
+		<a class="cabecera__logo" href="/">
+			<img class="cabecera__insignia" src={sitio.icono} alt="Insignia DEM" width="42" height="42" />
+			<span class="cabecera__nombre">{sitio.nombreCompleto}</span>
+		</a>
+		<div class="cabecera__enlaces">
+			<a href="/">Inicio</a>
+			<a class="boton boton-primario" href="/inscripcion">Inscríbete</a>
+		</div>
+	</nav>
+</header>
+
+<style>
+	.cabecera {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: rgb(143 21 36 / 0.95);
+		backdrop-filter: blur(8px);
+		color: var(--blanco);
+		box-shadow: 0 4px 18px -10px rgb(143 21 36 / 0.6);
+	}
+
+	.cabecera__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding-block: 0.7rem;
+	}
+
+	.cabecera__logo {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		text-decoration: none;
+		color: var(--blanco);
+	}
+
+	.cabecera__insignia {
+		width: 42px;
+		height: 42px;
+		object-fit: contain;
+		border-radius: 50%;
+		background: var(--blanco);
+		padding: 3px;
+	}
+
+	.cabecera__nombre {
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.03em;
+	}
+
+	.cabecera__enlaces {
+		display: flex;
+		align-items: center;
+		gap: 1.2rem;
+	}
+
+	.cabecera__enlaces a:not(.boton) {
+		color: var(--blanco);
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.cabecera__enlaces a:not(.boton):hover {
+		color: var(--rojo-claro);
+	}
+
+	.cabecera .boton-primario {
+		padding: 0.55rem 1.2rem;
+		font-size: 0.9rem;
+	}
+
+	@media (max-width: 640px) {
+		.cabecera__nav {
+			padding-block: 0.55rem;
+		}
+
+		.cabecera__nombre {
+			display: none;
+		}
+
+		.cabecera__insignia {
+			width: 38px;
+			height: 38px;
+		}
+
+		.cabecera__enlaces a:not(.boton) {
+			display: none;
+		}
+	}
+</style>

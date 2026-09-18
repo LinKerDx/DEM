@@ -1,0 +1,14 @@
+---
+import Base from '../DEM/Base.astro';
+import Formulario from '../Inscripcion/Formulario.astro';
+import { sitio } from '../config/sitio';
+
+const endpoint = `https://formsubmit.co/ajax/${sitio.correoDestino}`;
+---
+
+<Base
+	title={`Inscripción · ${sitio.nombreCompleto}`}
+	description="Inscríbete a los próximos Encuentros Matrimoniales DEM."
+>
+	<Formulario endpoint={endpoint} />
+</Base>

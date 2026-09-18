@@ -1,0 +1,30 @@
+---
+import Cabecera from './Cabecera.astro';
+import Pie from './Pie.astro';
+import './Estilo/global.css';
+import { sitio } from '../config/sitio';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description ?? title} />
+		<link rel="icon" type="image/png" href={sitio.icono} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Cabecera />
+		<slot />
+		<Pie />
+	</body>
+</html>

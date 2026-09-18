@@ -1,0 +1,103 @@
+---
+const pilares = [
+	{
+		titulo: 'Comunicación',
+		texto: 'Espacios guiados para hablar con honestidad, sin juicios y con apertura al otro.',
+	},
+	{
+		titulo: 'Encuentro',
+		texto: 'Dinámicas que devuelven la cercanía, el contacto y la complicidad de la pareja.',
+	},
+	{
+		titulo: 'Compromiso',
+		texto: 'Herramientas concretas para cuidar la relación en el día a día.',
+	},
+];
+---
+
+<section class="propuesta" id="propuesta">
+	<div class="core">
+		<p class="marcador">Por qué participar</p>
+		<h2>Una experiencia que fortalece el vínculo</h2>
+		<p class="propuesta__intro">
+			Ya sea que atraviesen un buen momento o que quieran reconstruir puentes,
+			estos encuentros están diseñados para el matrimonio real, con sus luces y
+			sus sombras.
+		</p>
+
+		<div class="propuesta__tarjetas">
+			{
+				pilares.map((pilar) => (
+					<article class="tarjeta">
+						<h3>{pilar.titulo}</h3>
+						<p>{pilar.texto}</p>
+					</article>
+				))
+			}
+		</div>
+
+		<div class="propuesta__llamada">
+			<a class="boton boton-primario" href="/inscripcion">
+				Asegura tu lugar
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.propuesta {
+		padding-block: 4.5rem;
+		text-align: center;
+		background: var(--hueso);
+		border-radius: var(--radio);
+	}
+
+	.propuesta__intro {
+		max-width: 620px;
+		margin: 0 auto 2.5rem;
+		color: var(--gris);
+	}
+
+	.propuesta__tarjetas {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.tarjeta {
+		background: var(--blanco);
+		border-radius: var(--radio);
+		padding: 1.8rem 1.5rem;
+		box-shadow: var(--sombra);
+		border-top: 4px solid var(--rojo);
+		text-align: left;
+	}
+
+	.tarjeta h3 {
+		color: var(--rojo);
+	}
+
+	.tarjeta p {
+		margin: 0;
+		color: var(--gris);
+	}
+
+	.propuesta__llamada {
+		margin-top: 3rem;
+	}
+
+	@media (max-width: 640px) {
+		.propuesta {
+			padding-block: 3rem;
+		}
+
+		.propuesta__tarjetas {
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.tarjeta {
+			padding: 1.4rem 1.2rem;
+		}
+	}
+</style>

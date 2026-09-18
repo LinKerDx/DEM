@@ -1,0 +1,194 @@
+---
+import { sitio } from '../config/sitio';
+---
+
+<section class="hero">
+	<div class="core hero__contenido">
+		<img class="hero__insignia" src={sitio.icono} alt="Insignia DEM" width="210" height="210" />
+		<p class="marcador animar">Dinámicas de Encuentros Matrimoniales</p>
+		<h1 class="hero__titulo animar">
+			Un espacio para volver a encontrarse como pareja
+		</h1>
+		<p class="hero__bajada animar">
+			Retiros y encuentros vivenciales donde las parejas recuperan la
+			comunicación, el diálogo y la ilusión del primer día.
+		</p>
+		<div class="hero__acciones animar">
+			<a class="boton boton-primario" href="/inscripcion">Quiero inscribirme</a>
+			<a class="boton boton-hero-contorno" href="#propuesta">Conocer más</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		min-height: 88vh;
+		display: grid;
+		place-items: center;
+		text-align: center;
+		color: var(--blanco);
+		background:
+			radial-gradient(circle at 20% 20%, rgb(255 255 255 / 0.14), transparent 45%),
+			radial-gradient(circle at 80% 80%, rgb(232 84 107 / 0.35), transparent 50%),
+			linear-gradient(160deg, var(--rojo-oscuro) 0%, var(--rojo) 55%, var(--rojo-claro) 100%);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: radial-gradient(rgb(255 255 255 / 0.1) 1px, transparent 1px);
+		background-size: 26px 26px;
+		pointer-events: none;
+	}
+
+	.hero__contenido {
+		position: relative;
+		z-index: 1;
+		max-width: 780px;
+		padding-block: 4rem;
+	}
+
+	.hero__insignia {
+		width: 210px;
+		height: 210px;
+		margin: 0 auto 1.6rem;
+		object-fit: contain;
+		border-radius: 50%;
+		background: var(--blanco);
+		padding: 6px;
+		box-shadow: 0 18px 40px -18px rgb(0 0 0 / 0.45);
+	}
+
+	.hero__titulo {
+		color: var(--blanco);
+		font-size: clamp(2.4rem, 6vw, 4.2rem);
+		margin-bottom: 0.55em;
+	}
+
+	.hero .marcador {
+		color: #ffd6dc;
+	}
+
+	.hero__bajada {
+		font-size: clamp(1.05rem, 2vw, 1.3rem);
+		opacity: 0.95;
+		margin: 0 auto 2rem;
+		max-width: 560px;
+	}
+
+	.hero__acciones {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.hero .boton-primario {
+		background: var(--blanco);
+		color: var(--rojo);
+		box-shadow: 0 12px 24px -12px rgb(0 0 0 / 0.5);
+	}
+
+	.hero .boton-primario:hover {
+		background: #fff2f4;
+	}
+
+	.hero .boton-hero-contorno {
+		background: transparent;
+		border-color: var(--blanco);
+		color: var(--blanco);
+	}
+
+	.hero .boton-hero-contorno:hover {
+		background: rgb(255 255 255 / 0.14);
+	}
+
+	@keyframes fundirSurgir {
+		from {
+			opacity: 0;
+			transform: translateY(26px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes insigniaEntrada {
+		from {
+			opacity: 0;
+			transform: translateY(30px) scale(0.6);
+		}
+		60% {
+			transform: translateY(0) scale(1.06);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	.hero__insignia {
+		animation: insigniaEntrada 0.9s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+	}
+
+	.animar {
+		animation: fundirSurgir 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+	}
+
+	.marcador {
+		animation-delay: 0.15s;
+	}
+
+	.hero__titulo {
+		animation-delay: 0.3s;
+	}
+
+	.hero__bajada {
+		animation-delay: 0.45s;
+	}
+
+	.hero__acciones {
+		animation-delay: 0.6s;
+	}
+
+	@media (max-width: 640px) {
+		.hero {
+			min-height: 82vh;
+		}
+
+		.hero__contenido {
+			padding-block: 3rem 3.5rem;
+		}
+
+		.hero__insignia {
+			width: 170px;
+			height: 170px;
+			margin-bottom: 1.4rem;
+		}
+
+		.hero__titulo {
+			font-size: clamp(2rem, 9vw, 2.9rem);
+		}
+
+		.hero__bajada {
+			margin-bottom: 1.6rem;
+		}
+
+		.hero__acciones {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.7rem;
+			max-width: 320px;
+			margin-inline: auto;
+		}
+
+		.hero__acciones .boton {
+			text-align: center;
+			width: 100%;
+		}
+	}
+</style>

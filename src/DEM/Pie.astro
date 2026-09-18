@@ -1,0 +1,66 @@
+---
+import { sitio } from '../config/sitio';
+---
+
+<footer class="pie">
+	<div class="core pie__contenido">
+		<p class="pie__marca">
+			<img class="pie__insignia" src={sitio.icono} alt="Insignia DEM" width="36" height="36" />
+			<span>{sitio.nombreCompleto}</span>
+		</p>
+		<p class="pie__nota">
+			Dinámicas y encuentros pensados para fortalecer la vida de pareja.
+		</p>
+	</div>
+</footer>
+
+<style>
+	.pie {
+		background: var(--rojo-oscuro);
+		color: var(--blanco);
+		margin-top: 4rem;
+	}
+
+	.pie__contenido {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+		padding-block: 2rem;
+	}
+
+	.pie__marca {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		font-weight: 600;
+	}
+
+	.pie__insignia {
+		width: 36px;
+		height: 36px;
+		object-fit: contain;
+		border-radius: 50%;
+		background: var(--blanco);
+		padding: 2px;
+	}
+
+	.pie__nota {
+		margin: 0;
+		font-size: 0.9rem;
+		opacity: 0.88;
+	}
+
+	@media (max-width: 640px) {
+		.pie__contenido {
+			flex-direction: column;
+			text-align: center;
+			padding-block: 1.6rem;
+		}
+
+		.pie__marca {
+			justify-content: center;
+		}
+	}
+</style>
