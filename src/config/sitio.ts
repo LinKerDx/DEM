@@ -3,6 +3,8 @@ export const sitio = {
 	nombreCompleto: 'Dinámicas de Encuentros Matrimoniales',
 	descripcion:
 		'Encuentros que fortalecen la comunicación, el respeto y el amor en la pareja.',
-	correoDestino: 'tu-correo@gmail.com',
+	correoDestino:
+		import.meta.env.PUBLIC_CORREO_DESTINO ??
+		'dinamicasencuentrosmatrimoni@gmail.com',
 	icono: '/Dem%20Icon.png',
 };

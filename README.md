@@ -40,16 +40,15 @@ Abre http://localhost:4321
 
 ## ✉️ Configurar el correo de recepción
 
-Edita `src/config/sitio.ts` y cambia `correoDestino`:
+El correo está en `.env` (variable `PUBLIC_CORREO_DESTINO`):
 
-```ts
-export const sitio = {
-	nombre: 'DEM',
-	nombreCompleto: 'Dinámicas de Encuentros Matrimoniales',
-	correoDestino: 'tu-correo@gmail.com', // ← aquí llegan las inscripciones
-	icono: '/Dem%20Icon.png',
-};
+```env
+PUBLIC_CORREO_DESTINO=dinamicasencuentrosmatrimoni@gmail.com
 ```
+
+Se lee en `src/config/sitio.ts` (`correoDestino`). **En Vercel** hay que
+declararla en *Project Settings → Environment Variables* porque `.env` no se
+sube al repositorio.
 
 > **Primera activación de FormSubmit:** la primera vez que alguien envíe el
 > formulario, FormSubmit.co mandará un correo al destino pidiendo confirmar la

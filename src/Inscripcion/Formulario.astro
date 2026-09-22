@@ -66,7 +66,7 @@ const { endpoint } = Astro.props;
 					id="mensaje"
 					name="mensaje"
 					rows="4"
-					placeholder="Motivación, expectativas, horarios que mejor les convengan..."
+					placeholder="Motivación, expectativas..."
 				></textarea>
 			</div>
 
@@ -160,6 +160,23 @@ const { endpoint } = Astro.props;
 		opacity: 0;
 		height: 0;
 		width: 0;
+	}
+
+	@media (min-width: 641px) {
+		.marcador,
+		h2 {
+			display: block;
+			text-align: center;
+		}
+
+		.involucracion__intro {
+			margin-inline: auto;
+			text-align: center;
+		}
+
+		.formulario {
+			margin-inline: auto;
+		}
 	}
 
 	@media (max-width: 640px) {
