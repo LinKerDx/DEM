@@ -8,7 +8,7 @@ const endpoint = `https://formsubmit.co/ajax/${sitio.formsubmitToken}`;
 
 <Base
 	title={`Inscripción · ${sitio.nombreCompleto}`}
-	description="Inscríbete a los próximos Encuentros Matrimoniales DEM."
+	description={`Inscripción · ${sitio.descripcion}`}
 >
 	<Formulario endpoint={endpoint} />
 </Base>
