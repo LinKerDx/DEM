@@ -40,23 +40,24 @@ Abre http://localhost:4321
 
 ## ✉️ Configurar el correo de recepción
 
-El correo está en `.env` (variable `PUBLIC_CORREO_DESTINO`):
+FormSubmit oculta tu correo tras un **token**. Las variables están en `.env`
+(copia `.env.example`):
 
 ```env
-PUBLIC_CORREO_DESTINO=dinamicasencuentrosmatrimoni@gmail.com
+PUBLIC_CORREO_DESTINO=tu-correo@gmail.com
+PUBLIC_FORMSUBMIT_TOKEN=tu-token-de-formsubmit
 ```
 
-Se lee en `src/config/sitio.ts` (`correoDestino`). **En Vercel** hay que
-declararla en *Project Settings → Environment Variables* porque `.env` no se
-sube al repositorio.
+`formsubmitToken` arma el endpoint `https://formsubmit.co/ajax/<token>`.
+**En Vercel** hay que declarar ambas en *Project Settings → Environment
+Variables* porque `.env` no se sube al repositorio.
 
-> **Primera activación de FormSubmit:** la primera vez que alguien envíe el
-> formulario, FormSubmit.co mandará un correo al destino pidiendo confirmar la
-> dirección (basta con pulsar el enlace de confirmación). Después, los envíos
-> llegan automáticamente.
+> **Activación:** tras recibir el correo de FormSubmit, haz clic en
+> **ACTIVATE FORM** una vez. Después los envíos llegan a tu correo
+> automáticamente.
 
-El formulario usa el endpoint AJAX (`https://formsubmit.co/ajax/<correo>`), por lo
-que el usuario ve el resultado en la misma página, sin redirecciones.
+El formulario usa el endpoint AJAX, por lo que el usuario ve el resultado en la
+misma página, sin redirecciones.
 
 ---
 
